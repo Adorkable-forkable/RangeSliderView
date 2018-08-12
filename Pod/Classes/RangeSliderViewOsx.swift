@@ -34,7 +34,7 @@
     /// Defaults to 0
     @IBInspectable public var minimumSelectedValue: Int {
       get {
-        return selectedRange.startIndex
+        return selectedRange.lowerBound
       }
       
       set {
@@ -48,7 +48,7 @@
     /// Defaults to 100
     @IBInspectable public var maximumSelectedValue: Int {
       get {
-        return selectedRange.endIndex
+        return selectedRange.upperBound
       }
       
       set {

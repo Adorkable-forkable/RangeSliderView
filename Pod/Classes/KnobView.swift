@@ -6,8 +6,11 @@
 //  Copyright © 2016 Omar Abdelhafith. All rights reserved.
 //
 
-import Foundation
-
+#if os(OSX)
+import Cocoa
+#else
+import UIKit
+#endif
 
 protocol Knob {
   #if os(OSX)
@@ -34,7 +37,7 @@ class KnobViewImpl {
     rect = rect.insetBy(dx: 1, dy: 1)
     
     #if os(OSX)
-      let ovalPath = NSBezierPath(ovalInRect: rect)
+      let ovalPath = NSBezierPath(ovalIn: rect)
     #else
       let ovalPath = UIBezierPath(ovalIn: rect)
     #endif

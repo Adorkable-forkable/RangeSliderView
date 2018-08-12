@@ -29,10 +29,10 @@
     
     var knobView: KnobView!
     
-    var knobMovementCallback : (NSRect -> ())?
+    var knobMovementCallback : ((NSRect) -> ())?
     
     init() {
-      super.init(frame: CGRectZero)
+      super.init(frame: CGRect.zero)
       commonInit()
     }
     
@@ -48,24 +48,22 @@
       self.addSubview(knobView)
     }
     
-    override func hitTest(aPoint: NSPoint) -> NSView? {
+    override func hitTest(_ aPoint: NSPoint) -> NSView? {
       return knobView.hitTest(aPoint)
     }
     
     var draggingPoint: CGFloat = 0
     
-    override func mouseDown(theEvent: NSEvent) {
-      let pointInKnob = knobView.convertPoint(theEvent.locationInWindow, fromView: nil)
+    override func mouseDown(with theEvent: NSEvent) {
+        let pointInKnob = knobView.convert(theEvent.locationInWindow, from: nil)
       draggingPoint = RectUtil.pointHorizontalDistanceFromCenter(forRect: knobFrame, point: pointInKnob)
     }
     
-    override func mouseDragged(theEvent: NSEvent) {
-      let point = convertPoint(theEvent.locationInWindow, fromView: nil)
+    override func mouseDragged(with theEvent: NSEvent) {
+        let point = convert(theEvent.locationInWindow, from: nil)
       
-      knobFrame =
-        knobFrame
-        |> RectUtil.updateRectHorizontalCenter(xCenter: point.x)
-        |> RectUtil.moveRect(toLeft: draggingPoint)
+        knobFrame = RectUtil.updateRectHorizontalCenter(xCenter: point.x, rect: knobFrame)
+        knobFrame = RectUtil.moveRect(toLeft: draggingPoint, knobFrame)
       
       knobMovementCallback?(knobView.frame)
     }

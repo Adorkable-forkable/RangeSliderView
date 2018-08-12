@@ -6,8 +6,11 @@
 //
 //
 
+#if os(OSX)
 import Foundation
-
+#else
+import UIKit
+#endif
 
 class RectUtil {
   

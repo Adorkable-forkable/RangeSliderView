@@ -6,7 +6,11 @@
 //
 //
 
+#if os(OSX)
 import Foundation
+#else
+import UIKit
+#endif
 
 precedencegroup FramePrecendence {
 	associativity: left

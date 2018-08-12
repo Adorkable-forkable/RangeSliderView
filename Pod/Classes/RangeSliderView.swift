@@ -6,6 +6,11 @@
 //  Copyright © 2016 Omar Abdelhafith. All rights reserved.
 //
 
+#if os(OSX)
+import Cocoa
+#else
+import UIKit
+#endif
 
 protocol RangeSlider: AnyObject {
   var minimumValue: Int { get set }
@@ -32,7 +37,7 @@ protocol RangeSlider: AnyObject {
   func informAboutValueChanged()
   
   #if os(OSX)
-  func addSubview(view: NSView)
+  func addSubview(_ view: NSView)
   #else
   func addSubview(_ view: UIView)
   #endif
@@ -62,7 +67,7 @@ extension RangeSlider {
   }
   
   #if os(OSX)
-  private func addToView(subView: NSView) {
+  private func addToView(_ subView: NSView) {
     addSubview(subView)
     subView.frame = bounds
   }

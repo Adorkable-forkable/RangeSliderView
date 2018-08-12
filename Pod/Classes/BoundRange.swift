@@ -6,8 +6,11 @@
 //  Copyright © 2016 Omar Abdelhafith. All rights reserved.
 //
 
+#if os(OSX)
 import Foundation
-
+#else
+import UIKit
+#endif
 
 struct BoundRange {
   

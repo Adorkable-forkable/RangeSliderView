@@ -6,8 +6,11 @@
 //  Copyright © 2016 Omar Abdelhafith. All rights reserved.
 //
 
-import Foundation
-
+#if os(OSX)
+import Cocoa
+#else
+import UIKit
+#endif
 
 enum KnobPlacment {
   

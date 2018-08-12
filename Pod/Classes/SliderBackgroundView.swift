@@ -6,8 +6,11 @@
 //  Copyright © 2016 Omar Abdelhafith. All rights reserved.
 //
 
-import Foundation
-
+#if os(OSX)
+import Cocoa
+#else
+import UIKit
+#endif
 
 protocol SliderBackground {
   var boundRange: BoundRange { get set }
@@ -49,14 +52,14 @@ class SliderBackgroundViewImpl {
     if (frame.width - height) < 4 { return }
     
     #if os(OSX)
-      let ovalPath = NSBezierPath(ovalInRect: NSMakeRect(frame.minX, frame.minY, height, frame.height))
+      let ovalPath = NSBezierPath(ovalIn: NSMakeRect(frame.minX, frame.minY, height, frame.height))
     #else
       let ovalPath = UIBezierPath(ovalIn: CGRect(x: frame.minX, y: frame.minY, width: height, height: frame.height))
     #endif
     ovalPath.fill()
     
     #if os(OSX)
-      let oval2Path = NSBezierPath(ovalInRect: NSMakeRect(frame.minX + frame.width - height, frame.minY, height, frame.height))
+      let oval2Path = NSBezierPath(ovalIn: NSMakeRect(frame.minX + frame.width - height, frame.minY, height, frame.height))
     #else
       let oval2Path = UIBezierPath(ovalIn: CGRect(x: frame.minX + frame.width - height, y: frame.minY, width: height, height: frame.height))
     #endif
